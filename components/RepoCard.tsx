@@ -1,5 +1,3 @@
-function RepoCard(repodata: []) {
+export default function RepoCard(repodata: {}) {
   return <div>{repodata}</div>;
 }
-
-export default RepoCard;

@@ -1,6 +1,7 @@
+import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
 
-function Repo() {
+export default function Repo() {
   const router = useRouter();
   const reponame = router.query.reponame;
   return (
@@ -11,5 +12,3 @@ function Repo() {
     </div>
   );
 }
-
-export default Repo;
