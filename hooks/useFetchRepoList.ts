@@ -14,7 +14,7 @@ export default function useFetchRepo(username: string, page: number) {
     async function getRepoList(username: string, page: number) {
       try {
         const res = await fetch(
-          `https://api.github.com/users/${username}/repos?per_page=10&&page=${page}`
+          `https://api.github.com/users/${username}/repos?sort=updated&&per_page=10&&page=${page}`
         );
         const data = await res.json();
         setRepos((prevRepos: Array<RepoData>): Array<RepoData> => {
