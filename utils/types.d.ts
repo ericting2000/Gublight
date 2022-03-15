@@ -199,3 +199,19 @@ export interface RepoDetail {
   network_count: number;
   subscribers_count: number;
 }
+
+export interface KeyboardEvent<T = Element>
+  extends SyntheticEvent<T, NativeKeyboardEvent> {
+  altKey: boolean;
+  charCode: number;
+  ctrlKey: boolean;
+  getModifierState(key: string): boolean;
+  key: string;
+  keyCode: number;
+  locale: string;
+  location: number;
+  metaKey: boolean;
+  repeat: boolean;
+  shiftKey: boolean;
+  which: number;
+}
