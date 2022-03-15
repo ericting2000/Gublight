@@ -7,7 +7,6 @@ import { KeyboardEvent } from '../utils/types';
 
 function Body() {
   const [username, setUsername] = useState('');
-  const [clicked, setClicked] = useState(false);
   const router = useRouter();
 
   const handleRouteChange = (path: string) => {
@@ -58,7 +57,7 @@ function Body() {
                 type="text"
                 className="text-[#393939] rounded-md my-5 w-11/12 md:w-[70%] lg:w-[76%] py-1 px-2 md:mr-3 lg:px-[13px] lg:py-[8px]"
                 autoFocus
-                placeholder="User name"
+                placeholder="Username"
                 onChange={(e) => {
                   setUsername(e.target.value);
                 }}

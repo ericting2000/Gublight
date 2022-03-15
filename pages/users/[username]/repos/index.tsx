@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState, useRef, useCallback } from 'react';
 import Header from '../../../../components/Header';
-import LandingHeader from '../../../../components/LandingHeader';
 import RepoCard from '../../../../components/RepoCard';
 import useFetchRepo from '../../../../hooks/useFetchRepoList';
 import { RepoData } from '../../../../utils/types';
