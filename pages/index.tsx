@@ -69,6 +69,7 @@ function Body() {
                 onClick={() => {
                   setUsername(username);
                   //console.log(username);
+                  handleRouteChange('/users/' + username + '/repos');
                 }}
               >
                 Explore user
