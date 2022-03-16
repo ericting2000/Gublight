@@ -60,11 +60,12 @@ function Body() {
                 placeholder="Username"
                 onChange={(e) => {
                   setUsername(e.target.value);
+                  //console.log(username);
                 }}
                 onKeyDown={onKeyDown}
               />
               <button
-                className="bg-[#58A957] hover:bg-[#6fce6d] active:bg-[#4e914d] transition duration-100 rounded-md px-2 py-1 lg:px-[13px] lg:py-[8px]"
+                className="bg-[#58A957] hover:bg-[#6fce6d] active:bg-[#4e914d] transition duration-300 rounded-md px-2 py-1 lg:px-[13px] lg:py-[8px]"
                 onClick={() => {
                   setUsername(username);
                   //console.log(username);

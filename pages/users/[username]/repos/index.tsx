@@ -1,21 +1,31 @@
 import { GetServerSideProps } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 import Header from '../../../../components/Header';
-import RepoCard from '../../../../components/RepoCard';
 import useFetchRepo from '../../../../hooks/useFetchRepoList';
 import { RepoData } from '../../../../utils/types';
+import Image from 'next/image';
+import Star from '../../../../public/assets/icon/Star.svg';
 
 interface Props {
   username: string;
 }
 
 export default function RepoList(props: Props) {
-  //const [user, setUser] = useState('');
   const [page, setPage] = useState(1);
   const router = useRouter();
   const user = props.username;
+
+  // useEffect(() => {
+  //   setPage(1);
+  // }, [user]);
+
+  //console.log('page: ' + page);
+
+  //console.log('After useEffect, page is now:' + page);
+  //console.log('PAGE in function RepoLost: ' + page);
+
   const { loading, repos, error, hasMore } = useFetchRepo(user, page);
   const observer = useRef<IntersectionObserver | null>(null);
   const lastRepo = useCallback(
@@ -29,6 +39,7 @@ export default function RepoList(props: Props) {
       observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting && hasMore) {
           setPage((prevPage: number) => {
+            //console.log('Previous pageNumber:' + prevPage);
             return prevPage + 1;
           });
         }
@@ -36,6 +47,7 @@ export default function RepoList(props: Props) {
       if (node) {
         observer.current.observe(node);
       }
+
       //console.log('node = ' + node);
     },
     [loading, hasMore]
@@ -49,67 +61,79 @@ export default function RepoList(props: Props) {
   //console.log(props.Repos);
 
   return (
-    <>
+    <div className="bg-[#030D22] ">
       <div>
         <Header />
       </div>
-      <div className="container flex flex-col justify-center items-center my-20 mx-auto ">
-        <div className="text-center text-6xl text-gray-800">
-          This is {`${user}'s `}
-          github RepoList.
+      <div className="container flex flex-col justify-center items-center mt-20 mx-auto px-10 pb-20">
+        <div className="flex flex-col justify-center items-start w-full">
+          <div className="text-center text-2xl text-white">{user}</div>
+          <div className="border-b border-[#C4C4C4] mt-2 w-full" />
         </div>
-        {repos.map((repo: RepoData, index: number) => {
-          //console.log(repo);
-          if (repos.length === index + 1) {
-            return (
-              <div
-                ref={lastRepo}
-                key={repo.id}
-                className="flex flex-row justify-center items-center "
-              >
-                <Link
-                  href={{
-                    pathname: '/users/[username]/repos/[reponame]',
-                    query: { username: user, reponame: repo.name },
-                  }}
+
+        <div className="grid grid-cols-1 md:grid-cols-2 mt-4 pb-20">
+          {repos.map((repo: RepoData, index: number) => {
+            //console.log(repo);
+            if (repos.length === index + 1) {
+              return (
+                <div
+                  ref={lastRepo}
+                  key={repo.name}
+                  className="bg-[#020202] border border-[#8C949E] flex flex-col justify-center items-start text-[#8C949E] px-3 py-3 rounded-[8px] my-[6px] mx-[3px]"
                 >
-                  <a className="text-4xl text-emerald-800 hover:text-emerald-500">
-                    {repo.name}
-                  </a>
-                </Link>
-                <p className="text-3xl text-violet-700">
-                  Stars: {repo.stargazers_count}
-                </p>
-              </div>
-            );
-          } else {
-            return (
-              <div
-                key={repo.id}
-                className="flex flex-row justify-center items-center "
-              >
-                <Link
-                  href={{
-                    pathname: '/users/[username]/repos/[reponame]',
-                    query: { username: user, reponame: repo.name },
-                  }}
+                  <Link
+                    href={{
+                      pathname: '/users/[username]/repos/[reponame]',
+                      query: { username: user, reponame: repo.name },
+                    }}
+                  >
+                    <a className="text-[#58A7FF] text-lg hover:underline">
+                      {repo.name}
+                    </a>
+                  </Link>
+                  <p className="text-[#58A7FF] text-lg">{repo.name}</p>
+                  <p className="text-sm">{repo.description}</p>
+                  <div className="flex flex-row justify-between items-center mt-3 w-full">
+                    <p className="text-sm">{repo.language}</p>
+                    <div className="flex flex-row justify-center items-center pl-56">
+                      <Image src={Star} alt="star" width={14} height={13} />
+                      <p className="pl-2">{repo.stargazers_count}</p>
+                    </div>
+                  </div>
+                </div>
+              );
+            } else {
+              return (
+                <div
+                  key={repo.name}
+                  className="bg-[#020202] border border-[#8C949E] flex flex-col justify-center items-start text-[#8C949E] px-3 py-3 rounded-[8px] my-[6px] mx-[3px]"
                 >
-                  <a className="text-4xl text-emerald-800 hover:text-emerald-500">
-                    {repo.name}
-                  </a>
-                </Link>
-                <p className="text-3xl text-violet-700">
-                  Stars: {repo.stargazers_count}
-                </p>
-              </div>
-            );
-          }
-        })}
-        {/* <div className="text-5xl text-blue-600">
-      {loading && 'Loading.......'}
-    </div> */}
+                  <Link
+                    href={{
+                      pathname: '/users/[username]/repos/[reponame]',
+                      query: { username: user, reponame: repo.name },
+                    }}
+                  >
+                    <a className="text-[#58A7FF] text-lg hover:underline">
+                      {repo.name}
+                    </a>
+                  </Link>
+                  <p className="text-sm">{repo.description}</p>
+                  <div className="flex flex-row justify-between items-center mt-3 w-full">
+                    <p className="text-sm">{repo.language}</p>
+                    <div className="flex flex-row justify-center items-center pl-56">
+                      <Image src={Star} alt="star" width={14} height={13} />
+                      <p className="pl-2">{repo.stargazers_count}</p>
+                    </div>
+                  </div>
+                </div>
+              );
+            }
+          })}
+        </div>
+
         {loading && (
-          <div className="py-2.5 px-5 mt-10 mr-2 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700  inline-flex items-center">
+          <div className="py-2.5 px-5  mt-2 mr-2 text-sm font-medium  focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 bg-gray-800 text-gray-400 border-gray-600 hover:text-white hover:bg-gray-700 inline-flex items-center">
             <svg
               role="status"
               className="inline mr-2 w-4 h-4 text-gray-200 animate-spin "
@@ -131,16 +155,18 @@ export default function RepoList(props: Props) {
         )}
         <div className="text-5xl text-red-600">{error && 'Error.......'}</div>
       </div>
-    </>
+    </div>
   );
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const params = context.params!;
   const username = params.username;
+  console.log('in GSSR, username:' + username);
 
   return {
     props: {
+      key: username,
       username,
     },
   };

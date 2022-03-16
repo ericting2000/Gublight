@@ -39,6 +39,8 @@ function Header() {
   }, []); // Empty array ensures that effect is only run on mount
 
   const handleRouteChange = (path: string) => {
+    //console.log(router.asPath);
+    //if (path !== router.asPath) {
     router.push(path);
   };
 
@@ -52,38 +54,40 @@ function Header() {
   return (
     <div className="web-header bg-[#161B22] w-full h-20 ">
       <div className="container flex justify-between items-center my-0 mx-auto  h-20 px-10 ">
-        <div>
-          <Link href="/">
-            <a>
-              <Image src={Gublight} alt="GubLight Logo" />
-            </a>
-          </Link>
-        </div>
-        <div className={styles.githublink}>
-          <div className="flex  justify-center items-center text-xl rounded-md  w-full">
-            <input
-              type="text"
-              className="text-[#393939] rounded-md my-5 w-[60%] md:w-[70%]  py-1 px-2 mr-3 "
-              autoFocus
-              placeholder="Username"
-              onChange={(e) => {
-                setUsername(e.target.value);
-              }}
-              onKeyDown={onKeyDown}
-            />
-            <button
-              className="bg-[#58A957] hover:bg-[#6fce6d] active:bg-[#4e914d] transition duration-100 rounded-md px-2 py-1 "
-              onClick={() => {
-                setUsername(username);
-                //console.log(username);
-                handleRouteChange('/users/' + username + '/repos');
-              }}
-            >
-              Search
-            </button>
+        <div className="flex justify-center items-center">
+          <div>
+            <Link href="/">
+              <a>
+                <Image src={Gublight} alt="GubLight Logo" />
+              </a>
+            </Link>
+          </div>
+          <div className={styles.searchtop}>
+            <div className="flex  justify-center items-center text-xl rounded-md  w-full">
+              <input
+                type="text"
+                className="text-[#393939] rounded-md my-5 w-[60%] md:w-[70%]  py-0.5 px-2 mr-3 "
+                autoFocus
+                placeholder="Username"
+                onChange={(e) => {
+                  setUsername(e.target.value);
+                  ///console.log(username);
+                }}
+                onKeyDown={onKeyDown}
+              />
+              <button
+                className="bg-[#58A957] hover:bg-[#6fce6d] active:bg-[#4e914d] transition duration-300 rounded-md px-1 py-0.5 "
+                onClick={() => {
+                  setUsername(username);
+                  //console.log(username);
+                  handleRouteChange('/users/' + username + '/repos');
+                }}
+              >
+                Search
+              </button>
+            </div>
           </div>
         </div>
-
         <div className={styles.githublink}>
           <a href="https://github.com/ericting2000/2022-Dcard-Web-Frontend-Intern-Homework">
             <Image src={Github} alt="Github Logo" />
@@ -104,7 +108,7 @@ function Header() {
       <Collapse
         isOpen={isOpened}
         transition={`height 300ms cubic-bezier(.4, 0, .2, 1)`}
-        className="bg-[#2F3134] border-none"
+        className="bg-[#2F3134] border-none "
       >
         <div className="flex  justify-center items-center text-xl rounded-md  w-full">
           <input
@@ -118,10 +122,11 @@ function Header() {
             onKeyDown={onKeyDown}
           />
           <button
-            className="bg-[#58A957] hover:bg-[#6fce6d] active:bg-[#4e914d] transition duration-100 rounded-md px-2 py-1 "
-            onClick={() => {
+            className="bg-[#58A957] hover:bg-[#6fce6d] active:bg-[#4e914d] transition duration-300 rounded-md px-2 py-1 "
+            onClick={async () => {
               setUsername(username);
               //console.log(username);
+
               handleRouteChange('/users/' + username + '/repos');
             }}
           >

@@ -8,21 +8,28 @@ export default function useFetchRepo(username: string, page: number) {
   const [hasMore, setHasMore] = useState(false);
 
   useEffect(() => {
+    setRepos([]);
+  }, [username]);
+
+  useEffect(() => {
     setLoading(true);
     setError(false);
 
     async function getRepoList(username: string, page: number) {
+      //console.log('page in fetch function = ' + page);
       try {
         const res = await fetch(
-          `https://api.github.com/users/${username}/repos?sort=updated&&per_page=10&&page=${page}`
+          `https://api.github.com/users/${username}/repos?sort=updated&per_page=10&page=${page}`
         );
         const data = await res.json();
         setRepos((prevRepos: Array<RepoData>): Array<RepoData> => {
-          return [...prevRepos, ...data.map((repo: RepoData) => repo)];
+          return Array.from(
+            new Set([...prevRepos, ...data.map((repo: RepoData) => repo)])
+          );
         });
         setHasMore(data.length > 0);
         setLoading(false);
-        console.log(data);
+        //console.log(data);
       } catch (err) {
         setError(true);
         console.log('Something Went Wrong!!!');
