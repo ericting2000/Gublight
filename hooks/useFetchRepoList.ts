@@ -5,7 +5,7 @@ export default function useFetchRepo(username: string, page: number) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [repos, setRepos] = useState<Array<RepoData>>([]);
-  const [hasMore, setHasMore] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
 
   useEffect(() => {
     setRepos([]);

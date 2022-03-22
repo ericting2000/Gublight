@@ -7,6 +7,8 @@ import useFetchRepo from '../../../../hooks/useFetchRepoList';
 import { RepoData } from '../../../../utils/types';
 import Image from 'next/image';
 import Star from '../../../../public/assets/icon/Star.svg';
+import styles from '../../../../styles/index.module.sass';
+import Footer from '../../../../components/Footer';
 
 interface Props {
   username: string;
@@ -61,17 +63,17 @@ export default function RepoList(props: Props) {
   //console.log(props.Repos);
 
   return (
-    <div className="bg-[#030D22] ">
+    <div className="bg-[#030D22] min-h-screen">
       <div>
         <Header />
       </div>
       <div className="container flex flex-col justify-center items-center mt-20 mx-auto px-10 pb-20">
         <div className="flex flex-col justify-center items-start w-full">
-          <div className="text-center text-2xl text-white">{user}</div>
+          <div className="text-center text-2xl text-white">{user} </div>
           <div className="border-b border-[#C4C4C4] mt-2 w-full" />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 mt-4 pb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 mt-4 pb-10">
           {repos.map((repo: RepoData, index: number) => {
             //console.log(repo);
             if (repos.length === index + 1) {
@@ -79,7 +81,7 @@ export default function RepoList(props: Props) {
                 <div
                   ref={lastRepo}
                   key={repo.name}
-                  className="bg-[#020202] border border-[#8C949E] flex flex-col justify-center items-start text-[#8C949E] px-3 py-3 rounded-[8px] my-[6px] mx-[3px]"
+                  className="bg-[#020202] border border-[#8C949E] flex flex-col justify-start items-start text-[#8C949E] px-3 py-3 rounded-[8px] my-[6px] mx-[3px]"
                 >
                   <Link
                     href={{
@@ -91,11 +93,10 @@ export default function RepoList(props: Props) {
                       {repo.name}
                     </a>
                   </Link>
-                  <p className="text-[#58A7FF] text-lg">{repo.name}</p>
-                  <p className="text-sm">{repo.description}</p>
-                  <div className="flex flex-row justify-between items-center mt-3 w-full">
+                  <p className={styles.repodes}>{repo.description}</p>
+                  <div className="flex flex-row justify-between items-center mt-3 w-full justify-self-end">
                     <p className="text-sm">{repo.language}</p>
-                    <div className="flex flex-row justify-center items-center pl-56">
+                    <div className="flex flex-row justify-center items-center  ">
                       <Image src={Star} alt="star" width={14} height={13} />
                       <p className="pl-2">{repo.stargazers_count}</p>
                     </div>
@@ -106,7 +107,7 @@ export default function RepoList(props: Props) {
               return (
                 <div
                   key={repo.name}
-                  className="bg-[#020202] border border-[#8C949E] flex flex-col justify-center items-start text-[#8C949E] px-3 py-3 rounded-[8px] my-[6px] mx-[3px]"
+                  className="bg-[#020202] border border-[#8C949E] flex flex-col justify-start items-start text-[#8C949E] px-3 py-3 rounded-[8px] my-[6px] mx-[3px]"
                 >
                   <Link
                     href={{
@@ -118,10 +119,10 @@ export default function RepoList(props: Props) {
                       {repo.name}
                     </a>
                   </Link>
-                  <p className="text-sm">{repo.description}</p>
-                  <div className="flex flex-row justify-between items-center mt-3 w-full">
+                  <p className={styles.repodes}>{repo.description}</p>
+                  <div className="flex flex-row justify-between items-center mt-3 w-full justify-self-end">
                     <p className="text-sm">{repo.language}</p>
-                    <div className="flex flex-row justify-center items-center pl-56">
+                    <div className="flex flex-row justify-center items-center ">
                       <Image src={Star} alt="star" width={14} height={13} />
                       <p className="pl-2">{repo.stargazers_count}</p>
                     </div>
@@ -133,7 +134,7 @@ export default function RepoList(props: Props) {
         </div>
 
         {loading && (
-          <div className="py-2.5 px-5  mt-2 mr-2 text-sm font-medium  focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 bg-gray-800 text-gray-400 border-gray-600 hover:text-white hover:bg-gray-700 inline-flex items-center">
+          <div className="py-2.5 px-5  mt-2 mr-2 text-sm font-medium  focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 bg-gray-800 text-gray-400 border border-[#8C949E] hover:text-white hover:bg-gray-700 inline-flex items-center rounded-md">
             <svg
               role="status"
               className="inline mr-2 w-4 h-4 text-gray-200 animate-spin "
@@ -155,6 +156,8 @@ export default function RepoList(props: Props) {
         )}
         <div className="text-5xl text-red-600">{error && 'Error.......'}</div>
       </div>
+
+      {!hasMore && <Footer />}
     </div>
   );
 }

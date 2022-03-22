@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { KeyboardEvent } from '../utils/types';
 
-function Header() {
+export default function Header() {
   const [isOpened, setIsOpened] = useState(false);
   const [username, setUsername] = useState('');
   const router = useRouter();
@@ -57,7 +57,7 @@ function Header() {
         <div className="flex justify-center items-center">
           <div>
             <Link href="/">
-              <a>
+              <a className="pt-[6px]">
                 <Image src={Gublight} alt="GubLight Logo" />
               </a>
             </Link>
@@ -89,8 +89,11 @@ function Header() {
           </div>
         </div>
         <div className={styles.githublink}>
-          <a href="https://github.com/ericting2000/2022-Dcard-Web-Frontend-Intern-Homework">
-            <Image src={Github} alt="Github Logo" />
+          <a
+            href="https://github.com/ericting2000/2022-Dcard-Web-Frontend-Intern-Homework"
+            className="pt-[6px]"
+          >
+            <Image src={Github} alt="Github Logo" width={20} height={20} />
           </a>
         </div>
         <div className={styles.search}>
@@ -137,5 +140,3 @@ function Header() {
     </div>
   );
 }
-
-export default Header;

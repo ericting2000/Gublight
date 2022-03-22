@@ -1,29 +1,144 @@
 import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
+import Footer from '../../../../components/Footer';
 import Header from '../../../../components/Header';
-import { RepoData, RepoDetail } from '../../../../utils/types';
+import { Contributors, RepoData, RepoDetail } from '../../../../utils/types';
+import Star from '../../../../public/assets/icon/Star.svg';
+import Fork from '../../../../public/assets/icon/Fork.svg';
+import Watch from '../../../../public/assets/icon/Watch.svg';
 
 interface Props {
   detail: RepoDetail;
+  languages: Object;
+  contributors: Array<Contributors>;
 }
 
 export default function Repo(props: Props) {
   const router = useRouter();
   const reponame = router.query.reponame as string;
 
-  const detail = props.detail;
+  const detail = props.detail!;
+  const cntrbtrs = props.contributors!;
+  const lans = Object.entries(props.languages!);
+
+  let totalByte: number = 0;
+
+  Object.values(props.languages).forEach((element) => {
+    totalByte += element;
+  });
+
+  let roundDecimal = function (val: number, precision: number) {
+    return (
+      Math.round(Math.round(val * Math.pow(10, (precision || 0) + 1)) / 10) /
+      Math.pow(10, precision || 0)
+    );
+  };
+
+  //console.log(totalByte);
+
   return (
-    <>
+    <div className="bg-[#030D22] min-h-screen">
       <div>
         <Header />
       </div>
-      <div className="container flex flex-col justify-center items-center my-20 mx-auto ">
-        <div className="text-center text-6xl text-gray-800">
-          This is the {reponame} Detail.
+      <div className="container flex flex-col justify-center items-center mt-20 mx-auto px-10 pb-20 2xl:pb-32">
+        <div className="flex flex-col justify-center items-start w-full">
+          <div className="text-center text-2xl text-white">
+            {detail.owner.login}
+            <span className="text-[#c4c4c4]">{' / '}</span>
+            <a href={detail.html_url} className="font-medium hover:underline">
+              {detail.name}
+            </a>
+          </div>
+          <div className="border-b border-[#C4C4C4] mt-2 w-full" />
         </div>
-        {<p className="text-4xl text-emerald-800">{detail.full_name}</p>}
+        <div className="flex justify-center items-center w-[90%]">
+          <div className="grid grid-cols-1 md:grid-cols-2 mt-10 py-10 px-10 bg-[#020202] border border-[#8C949E] rounded-lg text-white w-full">
+            <div className="my-4 mx-3 flex flex-col justify-start items-start">
+              <p className="text-xl font-medium text-[#58A7FF]">Last Update</p>
+              <p className="my-3 text-[#c4c4c4]">
+                {detail.updated_at.slice(0, 10)}
+              </p>
+            </div>
+            <div className="my-4 mx-3 flex flex-col justify-start items-start">
+              <p className="text-xl font-medium text-[#58A7FF]">About</p>
+              <p className="my-3 text-[#c4c4c4]">{detail.description}</p>
+            </div>
+            <div className="my-4 mx-3 flex flex-col justify-start items-start">
+              <p className="text-xl font-medium text-[#58A7FF]">Stats</p>
+              <div className="flex flex-row flex-wrap justify-start items-center my-3 text-[#c4c4c4]">
+                <div className="flex flex-row justify-center items-center mr-3">
+                  <Image src={Star} alt="star" width={14} height={13} />
+                  <p className="pl-1">{detail.stargazers_count} stars</p>
+                </div>
+                <div className="flex flex-row justify-center items-center mr-3">
+                  <Image src={Watch} alt="star" width={13} height={10} />
+                  <p className="pl-1">{detail.watchers_count} watching</p>
+                </div>
+                <div className="flex flex-row justify-center items-center">
+                  <Image src={Fork} alt="star" width={13} height={13.6} />
+                  <p className="pl-1">{detail.forks_count} forks</p>
+                </div>
+              </div>
+            </div>
+            <div className="my-4 mx-3 flex flex-col justify-start items-start">
+              <p className="text-xl font-medium text-[#58A7FF]">License</p>
+              <p className="my-3 text-[#c4c4c4]">
+                {detail.license === null
+                  ? 'No license information'
+                  : detail.license.name}
+              </p>
+            </div>
+            <div className="my-4 mx-3 flex flex-col justify-start items-start">
+              <p className="text-xl font-medium text-[#58A7FF]">Languages</p>
+              <div className="flex flex-row flex-wrap justify-start items-center my-3 text-[#c4c4c4]">
+                {lans.map((lan) => {
+                  return (
+                    <div
+                      key={lan[0]}
+                      className="flex flex-row justify-center items-center mr-3"
+                    >
+                      <p>{lan[0]}</p>
+                      <p className="pl-1 text-[#8C949E]">
+                        {roundDecimal((lan[1] / totalByte) * 100, 3)}%
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+            <div className="my-4 mx-3 flex flex-col justify-start items-start">
+              <p className="text-xl font-medium text-[#58A7FF]">Contributors</p>
+              <div className="flex flex-row flex-wrap justify-start items-center my-3 ">
+                {cntrbtrs !== null
+                  ? cntrbtrs.map((contributor: Contributors) => {
+                      if (contributor !== null) {
+                        return (
+                          <div className="mr-[2px]">
+                            <Image
+                              key={contributor.id}
+                              src={contributor.avatar_url}
+                              alt="contributor-avatar"
+                              width={30}
+                              height={30}
+                              className="rounded-full"
+                            />
+                          </div>
+                        );
+                      }
+                    })
+                  : 'No contributor information'}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </>
+
+      <div>
+        <Footer />
+      </div>
+    </div>
   );
 }
 
@@ -39,10 +154,23 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     `https://api.github.com/repos/${username}/${reponame}`
   );
   const data = await res.json();
-  console.log(data);
+  //console.log(data);
+
+  const res2 = await fetch(
+    `https://api.github.com/repos/${username}/${reponame}/languages`
+  );
+  const data2 = await res2.json();
+
+  const res3 = await fetch(
+    `https://api.github.com/repos/${username}/${reponame}/contributors`
+  );
+  const data3 = await res3.json();
+
   return {
     props: {
       detail: data as RepoDetail,
+      languages: data2 as Object,
+      contributors: data3 as Contributors,
     },
   };
 };

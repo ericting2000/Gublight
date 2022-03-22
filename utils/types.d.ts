@@ -20,7 +20,7 @@ export interface RepoData {
     repos_url: string;
     events_url: string;
     received_events_url: string;
-    type: 'User';
+    type: string;
     site_admin: boolean;
   };
   private: boolean;
@@ -70,7 +70,7 @@ export interface RepoData {
   hooks_url: string;
   svn_url: string;
   homepage: string;
-  language: null;
+  language: null | string;
   forks_count: number;
   stargazers_count: number;
   watchers_count: number;
@@ -96,6 +96,35 @@ export interface RepoData {
     pull: boolean;
   };
   template_repository: null;
+}
+interface License {
+  key: string;
+  name: string;
+  spdx_id: string;
+  url: string;
+  node_id: string;
+}
+
+export interface Contributors {
+  login: string;
+  id: number;
+  node_id: string;
+  avatar_url: string;
+  gravatar_id: string;
+  url: string;
+  html_url: string;
+  followers_url: string;
+  following_url: string;
+  gists_url: string;
+  starred_url: string;
+  subscriptions_url: string;
+  organizations_url: string;
+  repos_url: string;
+  events_url: string;
+  received_events_url: string;
+  type: string;
+  site_admin: boolean;
+  contributions: number;
 }
 
 export interface RepoDetail {
@@ -182,11 +211,11 @@ export interface RepoDetail {
   has_wiki: boolean;
   has_pages: boolean;
   forks_count: number;
-  mirror_url: null;
+  mirror_url: null | string;
   archived: boolean;
   disabled: boolean;
   open_issues_count: number;
-  license: null;
+  license: null | License;
   allow_forking: boolean;
   is_template: boolean;
   topics: [];
@@ -195,7 +224,7 @@ export interface RepoDetail {
   open_issues: number;
   watchers: number;
   default_branch: string;
-  temp_clone_token: null;
+  temp_clone_token: null | string;
   network_count: number;
   subscribers_count: number;
 }
