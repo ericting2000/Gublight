@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { RepoData } from '../utils/types';
 
 export default function useFetchRepo(username: string, page: number) {
+  const [firstFetch, setFirstFetch] = useState(true);
   const [empty, setEmpty] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -27,7 +28,7 @@ export default function useFetchRepo(username: string, page: number) {
         if (Object.values(data)[0] === 'Not Found') {
           throw 'Not Found';
         }
-        if (data.length === 0) {
+        if (data.length === 0 && firstFetch) {
           throw 'Empty';
         }
         setRepos((prevRepos: Array<RepoData>): Array<RepoData> => {
@@ -35,6 +36,7 @@ export default function useFetchRepo(username: string, page: number) {
             new Set([...prevRepos, ...data.map((repo: RepoData) => repo)])
           );
         });
+        setFirstFetch(false);
         setHasMore(data.length > 0);
         setLoading(false);
         //console.log(data);
