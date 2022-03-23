@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { RepoData } from '../utils/types';
 
 export default function useFetchRepo(username: string, page: number) {
+  const [empty, setEmpty] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [repos, setRepos] = useState<Array<RepoData>>([]);
@@ -22,6 +23,13 @@ export default function useFetchRepo(username: string, page: number) {
           `https://api.github.com/users/${username}/repos?sort=updated&per_page=10&page=${page}`
         );
         const data = await res.json();
+        console.log(data);
+        if (Object.values(data)[0] === 'Not Found') {
+          throw 'Not Found';
+        }
+        if (data.length === 0) {
+          throw 'Empty';
+        }
         setRepos((prevRepos: Array<RepoData>): Array<RepoData> => {
           return Array.from(
             new Set([...prevRepos, ...data.map((repo: RepoData) => repo)])
@@ -31,8 +39,16 @@ export default function useFetchRepo(username: string, page: number) {
         setLoading(false);
         //console.log(data);
       } catch (err) {
-        setError(true);
-        console.log('Something Went Wrong!!!');
+        if (err === 'Empty') {
+          setEmpty(true);
+          setLoading(false);
+        }
+        if (err === 'Not Found') {
+          setLoading(false);
+          setError(true);
+        }
+
+        //console.log('Something Went Wrong!!!');
         console.log(err);
       }
     }
@@ -41,5 +57,5 @@ export default function useFetchRepo(username: string, page: number) {
     //console.log('TEST HOOK FUNCTION');
   }, [username, page]);
 
-  return { loading, error, repos, hasMore };
+  return { empty, loading, error, repos, hasMore };
 }

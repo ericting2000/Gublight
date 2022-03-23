@@ -28,7 +28,7 @@ export default function RepoList(props: Props) {
   //console.log('After useEffect, page is now:' + page);
   //console.log('PAGE in function RepoLost: ' + page);
 
-  const { loading, repos, error, hasMore } = useFetchRepo(user, page);
+  const { empty, loading, repos, error, hasMore } = useFetchRepo(user, page);
   const observer = useRef<IntersectionObserver | null>(null);
   const lastRepo = useCallback(
     (node) => {
@@ -68,10 +68,12 @@ export default function RepoList(props: Props) {
         <Header />
       </div>
       <div className="container flex flex-col justify-center items-center mt-20 mx-auto px-10 pb-20">
-        <div className="flex flex-col justify-center items-start w-full">
-          <div className="text-center text-2xl text-white">{user} </div>
-          <div className="border-b border-[#C4C4C4] mt-2 w-full" />
-        </div>
+        {!error && (
+          <div className="flex flex-col justify-center items-start w-full">
+            <div className="text-center text-2xl text-white">{user}</div>
+            <div className="border-b border-[#C4C4C4] mt-2 w-full" />
+          </div>
+        )}
 
         <div className="grid grid-cols-1 md:grid-cols-2 mt-4 pb-10">
           {repos.map((repo: RepoData, index: number) => {
@@ -154,10 +156,24 @@ export default function RepoList(props: Props) {
             Loading...
           </div>
         )}
-        <div className="text-5xl text-red-600">{error && 'Error.......'}</div>
+        <div className="text-xl md:text-3xl text-white">
+          {empty && (
+            <div className="flex flex-col justify-center items-center leading-relaxed">
+              <p>{user} has no repository been created yet.</p>
+            </div>
+          )}
+        </div>
+        <div className="text-xl md:text-3xl text-white">
+          {error && (
+            <div className="flex flex-col justify-center items-center leading-relaxed">
+              <p>{`Sorry, we cannot find what you're looking for.`}</p>
+              <p>Please try again</p>
+            </div>
+          )}
+        </div>
       </div>
 
-      {!hasMore && <Footer />}
+      {!hasMore && !empty && <Footer />}
     </div>
   );
 }
@@ -165,7 +181,7 @@ export default function RepoList(props: Props) {
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const params = context.params!;
   const username = params.username;
-  console.log('in GSSR, username:' + username);
+  //console.log('in GSSR, username:' + username);
 
   return {
     props: {
