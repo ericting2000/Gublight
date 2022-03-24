@@ -7,6 +7,7 @@ import { Contributors, RepoData, RepoDetail } from '../../../../utils/types';
 import Star from '../../../../public/assets/icon/Star.svg';
 import Fork from '../../../../public/assets/icon/Fork.svg';
 import Watch from '../../../../public/assets/icon/Watch.svg';
+import Link from 'next/link';
 
 interface Props {
   detail: RepoDetail;
@@ -20,7 +21,9 @@ export default function Repo(props: Props) {
 
   const detail = props.detail!;
   const cntrbtrs = props.contributors!;
+  //console.log(props.languages);
   const lans = Object.entries(props.languages!);
+  let percntnew: number = 0;
 
   let totalByte: number = 0;
 
@@ -45,7 +48,14 @@ export default function Repo(props: Props) {
       <div className="container flex flex-col justify-center items-center mt-20 mx-auto px-10 pb-20 2xl:pb-32">
         <div className="flex flex-col justify-center items-start w-full">
           <div className="text-center text-2xl text-white">
-            {detail.owner.login}
+            <Link
+              href={{
+                pathname: '/users/[username]/repos/',
+                query: { username: detail.owner.login },
+              }}
+            >
+              <a className="hover:underline">{detail.owner.login}</a>
+            </Link>
             <span className="text-[#c4c4c4]">{' / '}</span>
             <a href={detail.html_url} className="font-medium hover:underline">
               {detail.name}
@@ -92,13 +102,50 @@ export default function Repo(props: Props) {
             </div>
             <div className="my-4 mx-3 flex flex-col justify-start items-start">
               <p className="text-xl font-medium text-[#58A7FF]">Languages</p>
+              <div className="w-[95%] relative my-3">
+                {lans.map((lan, index) => {
+                  console.log(lans.length);
+                  let newLan = lan[0].replace(' ', '-');
+                  newLan = newLan.replace('#', '-Sharp');
+                  newLan = newLan.replace('++', 'pp');
+
+                  let percnt = roundDecimal((lan[1] / totalByte) * 100, 3);
+                  let rounded: string = 'rounded-tl-full rounded-bl-full';
+                  percntnew += percnt;
+                  // if (index === 0) {
+                  //   percntnew = percnt;
+                  // } else {
+                  //   percnt += percnt;
+                  // }
+                  if (index === lans.length - 1) {
+                    rounded = 'rounded-full';
+                  }
+                  return (
+                    <div
+                      key={lan[0]}
+                      className={`h-2 ${rounded} mr-1 ${newLan} absolute top-0 left-0 `}
+                      style={{
+                        width: `${percntnew}%`,
+                        zIndex: `${100 - index}`,
+                      }}
+                    ></div>
+                  );
+                })}
+              </div>
+
               <div className="flex flex-row flex-wrap justify-start items-center my-3 text-[#c4c4c4]">
                 {lans.map((lan) => {
+                  let newLan = lan[0].replace(' ', '-');
+                  newLan = newLan.replace('#', '-Sharp');
+                  newLan = newLan.replace('++', 'pp');
                   return (
                     <div
                       key={lan[0]}
                       className="flex flex-row justify-center items-center mr-3"
                     >
+                      <div
+                        className={`w-4 h-4 rounded-full mr-1 ${newLan}`}
+                      ></div>
                       <p>{lan[0]}</p>
                       <p className="pl-1 text-[#8C949E]">
                         {roundDecimal((lan[1] / totalByte) * 100, 3)}%

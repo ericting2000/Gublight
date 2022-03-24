@@ -24,7 +24,7 @@ export default function useFetchRepo(username: string, page: number) {
           `https://api.github.com/users/${username}/repos?sort=updated&per_page=10&page=${page}`
         );
         const data = await res.json();
-        console.log(data);
+        //console.log(data);
         if (Object.values(data)[0] === 'Not Found') {
           throw 'Not Found';
         }
