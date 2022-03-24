@@ -76,7 +76,7 @@ export default function Header() {
                 onKeyDown={onKeyDown}
               />
               <button
-                className="bg-[#58A957] hover:bg-[#6fce6d] active:bg-[#4e914d] transition duration-300 rounded-md px-1 py-0.5 "
+                className="bg-[#161B22] hover:bg-[#5B5B5B] active:bg-[#3b3b3b] border border-[#c4c4c4] transition duration-300 rounded-md px-2 py-0.5 text-[#c4c4c4] "
                 onClick={() => {
                   setUsername(username);
                   //console.log(username);
@@ -125,7 +125,7 @@ export default function Header() {
             onKeyDown={onKeyDown}
           />
           <button
-            className="bg-[#58A957] hover:bg-[#6fce6d] active:bg-[#4e914d] transition duration-300 rounded-md px-2 py-1 "
+            className="bg-[#2F3134 ] hover:bg-[#5B5B5B] active:bg-[#3b3b3b] border border-[#c4c4c4] transition duration-300 rounded-md px-2 py-1 text-[#c4c4c4] "
             onClick={async () => {
               setUsername(username);
               //console.log(username);
