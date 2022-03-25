@@ -4,6 +4,7 @@ import { route } from 'next/dist/server/router';
 import Head from 'next/head';
 import LandingHeader from '../components/LandingHeader';
 import { KeyboardEvent } from '../utils/types';
+import Favicon from '../utils/Favicon';
 
 function Body() {
   const [username, setUsername] = useState('');
@@ -39,8 +40,12 @@ function Body() {
       <div className="filter bg-[#040D213D] bg-opacity-[0.24] backdrop-blur-[33px] w-full h-screen  absolute !z-20"></div>
       <div className="container flex flex-col justify-center items-center my-0 mx-auto !z-30 relative top-0 left-0">
         <Head>
-          <title>GubLight</title>
-          <link rel="icon" href="/favicon.png" />
+          <title>GubLight:Explore the software fantasy</title>
+          <meta
+            name="description"
+            content="Explore the software fantasy. Search the Github Repo as you desire, find the next masterpiece."
+          />
+          <Favicon />
         </Head>
 
         <div className=" text-white font-bold lg:pr-[200px] xl:pr-[450px] 2xl:pr-[500px] pt-20 sm:pt-[200px] xl:pt-[250px]">

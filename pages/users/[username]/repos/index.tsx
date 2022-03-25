@@ -9,6 +9,8 @@ import Image from 'next/image';
 import Star from '../../../../public/assets/icon/Star.svg';
 import styles from '../../../../styles/index.module.sass';
 import Footer from '../../../../components/Footer';
+import Head from 'next/head';
+import Favicon from '../../../../utils/Favicon';
 
 interface Props {
   username: string;
@@ -64,6 +66,14 @@ export default function RepoList(props: Props) {
 
   return (
     <div className="bg-[#030D22] min-h-screen">
+      <Head>
+        <title>{user}</title>
+        <meta
+          name="description"
+          content={`${user}'s Github repository list.`}
+        />
+        <Favicon />
+      </Head>
       <div>
         <Header />
       </div>

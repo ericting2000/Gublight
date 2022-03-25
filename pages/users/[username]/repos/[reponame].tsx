@@ -8,6 +8,8 @@ import Star from '../../../../public/assets/icon/Star.svg';
 import Fork from '../../../../public/assets/icon/Fork.svg';
 import Watch from '../../../../public/assets/icon/Watch.svg';
 import Link from 'next/link';
+import Head from 'next/head';
+import Favicon from '../../../../utils/Favicon';
 
 interface Props {
   detail: RepoDetail;
@@ -42,10 +44,18 @@ export default function Repo(props: Props) {
 
   return (
     <div className="bg-[#030D22] min-h-screen">
+      <Head>
+        <title>{reponame}</title>
+        <meta
+          name="description"
+          content={`Information about the ${reponame}`}
+        />
+        <Favicon />
+      </Head>
       <div>
         <Header />
       </div>
-      <div className="container flex flex-col justify-center items-center mt-20 mx-auto px-10 pb-20 2xl:pb-32">
+      <div className="container flex flex-col justify-center items-center mt-20 mx-auto px-10 pb-20  min-h-screen">
         <div className="flex flex-col justify-center items-start w-full">
           <div className="text-center text-2xl text-white">
             <Link
