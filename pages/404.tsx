@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Header from '../components/Header';
-import Gublight from '../public/assets/icon/GubLight-Logo-NoBack.svg';
+import Gublight from '../public/icon/GubLight-Logo-NoBack.svg';
 
 export default function ErrorPage() {
   return (

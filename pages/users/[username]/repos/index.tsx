@@ -6,7 +6,7 @@ import Header from '../../../../components/Header';
 import useFetchRepo from '../../../../hooks/useFetchRepoList';
 import { RepoData } from '../../../../utils/types';
 import Image from 'next/image';
-import Star from '../../../../public/assets/icon/Star.svg';
+import Star from '../../../../public/icon/Star.svg';
 import styles from '../../../../styles/index.module.sass';
 import Footer from '../../../../components/Footer';
 import Head from 'next/head';

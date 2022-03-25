@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import Gublight from '../public/assets/icon/GubLight.svg';
-import Github from '../public/assets/icon/Github.svg';
+import Gublight from '../public/icon/GubLight.svg';
+import Github from '../public/icon/Github.svg';
 import Link from 'next/link';
 
 export default function LandingHeader() {

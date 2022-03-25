@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import Star from '../public/assets/icon/Star.svg';
+import Star from '../public/icon/Star.svg';
 import { RepoData } from '../utils/types';
 
 interface Props {
