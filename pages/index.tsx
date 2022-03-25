@@ -40,7 +40,7 @@ function Body() {
       <div className="filter bg-[#040D213D] bg-opacity-[0.24] backdrop-blur-[33px] w-full h-screen  absolute !z-20"></div>
       <div className="container flex flex-col justify-center items-center my-0 mx-auto !z-30 relative top-0 left-0">
         <Head>
-          <title>GubLight:Explore the software fantasy</title>
+          <title>GubLight: Explore the software fantasy</title>
           <meta
             name="description"
             content="Explore the software fantasy. Search the Github Repo as you desire, find the next masterpiece."
