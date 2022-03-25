@@ -7,6 +7,16 @@ const Favicon = () => {
         href="/favicons/apple-touch-icon.png"
       />
       <link
+        rel="android-chrome-icon"
+        sizes="192x192"
+        href="/favicons/android-chrome-192x192.png"
+      />
+      <link
+        rel="android-chrome-icon"
+        sizes="512x512"
+        href="/favicons/android-chrome-512x512.png"
+      />
+      <link
         rel="icon"
         type="image/png"
         sizes="32x32"
@@ -25,6 +35,7 @@ const Favicon = () => {
         href="/favicons/safari-pinned-tab.svg"
         color="#5bbad5"
       />
+      <meta name="msapplication-config" content="/favicons/browserconfig.xml" />
       <meta name="msapplication-TileColor" content="#da532c" />
       <meta name="theme-color" content="#ffffff" />
     </>
