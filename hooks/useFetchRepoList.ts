@@ -26,10 +26,14 @@ export default function useFetchRepo(username: string, page: number) {
         const data = await res.json();
         //console.log(data);
         if (Object.values(data)[0] === 'Not Found') {
-          throw 'Not Found';
+          setLoading(false);
+          setError(true);
+          return;
         }
         if (data.length === 0 && firstFetch) {
-          throw 'Empty';
+          setEmpty(true);
+          setLoading(false);
+          return;
         }
         setRepos((prevRepos: Array<RepoData>): Array<RepoData> => {
           return Array.from(
@@ -41,16 +45,6 @@ export default function useFetchRepo(username: string, page: number) {
         setLoading(false);
         //console.log(data);
       } catch (err) {
-        if (err === 'Empty') {
-          setEmpty(true);
-          setLoading(false);
-        }
-        if (err === 'Not Found') {
-          setLoading(false);
-          setError(true);
-        }
-
-        //console.log('Something Went Wrong!!!');
         console.log(err);
       }
     }
