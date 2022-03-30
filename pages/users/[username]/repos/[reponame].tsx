@@ -221,13 +221,18 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const res3 = await fetch(
     `https://api.github.com/repos/${username}/${reponame}/contributors`
   );
-  const data3 = await res3.json();
+  if (res3.status === 204) {
+    var Data3: Array<Contributors> = [];
+  } else {
+    var Data3: Array<Contributors> = await res3.json();
+  }
+  const data3 = Data3;
 
   return {
     props: {
       detail: data as RepoDetail,
       languages: data2 as Object,
-      contributors: data3 as Contributors,
+      contributors: data3 as Array<Contributors>,
     },
   };
 };
