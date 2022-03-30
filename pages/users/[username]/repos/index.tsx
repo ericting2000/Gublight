@@ -85,7 +85,7 @@ export default function RepoList(props: Props) {
           </div>
         )}
 
-        <div className="grid grid-cols-1 md:grid-cols-2 mt-4 pb-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 mt-4 pb-10 w-full">
           {repos.map((repo: RepoData, index: number) => {
             //console.log(repo);
             if (repos.length === index + 1) {
