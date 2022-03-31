@@ -89,7 +89,7 @@ export default function Header() {
                   }}
                   onKeyDown={onKeyDown}
                 />
-                <div className="absolute top-[54px] left-0.5 w-[60%] md:w-[70%]">
+                <div className="absolute top-[54px] left-1 w-[60%] md:w-[70%]">
                   {isInput && (
                     <div className="grid grid-cols-1 bg-white  text-[#040D21] w-full  mt-0.5 px-2 py-1 rounded-md ">
                       {loading && (
