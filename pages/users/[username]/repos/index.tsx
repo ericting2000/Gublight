@@ -21,16 +21,10 @@ export default function RepoList(props: Props) {
   const router = useRouter();
   const user = props.username;
 
-  // useEffect(() => {
-  //   setPage(1);
-  // }, [user]);
-
-  //console.log('page: ' + page);
-
-  //console.log('After useEffect, page is now:' + page);
-  //console.log('PAGE in function RepoLost: ' + page);
-
-  const { empty, loading, repos, error, hasMore } = useFetchRepo(user, page);
+  const { limit, empty, loading, repos, error, hasMore } = useFetchRepo(
+    user,
+    page
+  );
   const observer = useRef<IntersectionObserver | null>(null);
   const lastRepo = useCallback(
     (node) => {
@@ -57,13 +51,6 @@ export default function RepoList(props: Props) {
     [loading, hasMore]
   );
 
-  //let user = router.query.username as string;
-  //console.log('user = ' + user);
-  //setUser(props.username);
-
-  //const repos = props.Repos;
-  //console.log(props.Repos);
-
   return (
     <div className="bg-[#030D22] min-h-screen">
       <Head>
@@ -84,7 +71,6 @@ export default function RepoList(props: Props) {
             <div className="border-b border-[#C4C4C4] mt-2 w-full" />
           </div>
         )}
-
         <div className="grid grid-cols-1 md:grid-cols-2 mt-4 pb-10 w-full">
           {repos.map((repo: RepoData, index: number) => {
             //console.log(repo);
@@ -178,6 +164,22 @@ export default function RepoList(props: Props) {
             <div className="flex flex-col justify-center items-center leading-relaxed">
               <p>{`Sorry, we cannot find what you're looking for.`}</p>
               <p>Please try again</p>
+            </div>
+          )}
+        </div>
+        <div className="text-xl md:text-3xl text-white">
+          {limit && (
+            <div className="flex flex-col justify-center items-center leading-relaxed">
+              <p>{`Sorry, you've have reach the rate limit.`}</p>
+              <p>Please try again later.</p>
+              <p>
+                For more information, please visit{` `}
+                <span className="hover:underline text-[#58A7FF]">
+                  <a href="https://docs.github.com/en/rest/overview/resources-in-the-rest-api#rate-limiting">
+                    here
+                  </a>
+                </span>
+              </p>
             </div>
           )}
         </div>
