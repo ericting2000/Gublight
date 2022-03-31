@@ -55,7 +55,7 @@ export default function Repo(props: Props) {
       <div>
         <Header />
       </div>
-      <div className="container flex flex-col justify-center items-center mt-20 mx-auto px-10 pb-20  min-h-screen">
+      <div className="container flex flex-col justify-center items-center mt-20 mx-auto px-10 pb-20 ">
         <div className="flex flex-col justify-center items-start w-full">
           <div className="text-center text-2xl text-white">
             <Link

@@ -8,15 +8,27 @@ import Collapse from '@kunukn/react-collapse';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { KeyboardEvent } from '../utils/types';
+import useFuzzySearch from '../hooks/useFuzzySearch';
 
 export default function Header() {
   const [isOpened, setIsOpened] = useState(false);
   const [username, setUsername] = useState('');
   const router = useRouter();
+  const [isInput, setIsInput] = useState(false);
+  const { loading, limit, empty, error, users } = useFuzzySearch(username);
   const [windowSize, setWindowSize] = useState({
     width: 0,
     height: 0,
   });
+
+  useEffect(() => {
+    if (username === '') {
+      setIsInput(false);
+    } else {
+      setIsInput(true);
+    }
+  }, [username]);
+
   useEffect(() => {
     // Handler to call on window resize
     function handleResize() {

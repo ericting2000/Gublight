@@ -8,6 +8,7 @@ export default function useFetchRepo(username: string, page: number) {
   const [error, setError] = useState(false);
   const [repos, setRepos] = useState<Array<RepoData>>([]);
   const [hasMore, setHasMore] = useState(true);
+  const [limit, setLimit] = useState(false);
 
   useEffect(() => {
     setRepos([]);
@@ -23,6 +24,12 @@ export default function useFetchRepo(username: string, page: number) {
         const res = await fetch(
           `https://api.github.com/users/${username}/repos?sort=updated&per_page=10&page=${page}`
         );
+        if (res.status === 403) {
+          setLoading(false);
+          setLimit(true);
+          setError(true);
+          return;
+        }
         const data = await res.json();
         //console.log(data);
         if (Object.values(data)[0] === 'Not Found') {
@@ -53,5 +60,5 @@ export default function useFetchRepo(username: string, page: number) {
     //console.log('TEST HOOK FUNCTION');
   }, [username, page]);
 
-  return { empty, loading, error, repos, hasMore };
+  return { limit, empty, loading, error, repos, hasMore };
 }
