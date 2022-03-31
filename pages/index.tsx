@@ -13,7 +13,7 @@ function Body() {
   const [isInput, setIsInput] = useState(false);
   const [username, setUsername] = useState('');
   const router = useRouter();
-  const { loading, limit, empty, error, users } = useFuzzySearch(username);
+  const { loading, limit, empty, users } = useFuzzySearch(username);
   //console.log(isInput);
 
   useEffect(() => {
@@ -179,7 +179,7 @@ function Body() {
                     );
                   }
                 })}
-                {/* {limit && (
+                {limit && (
                   <div>
                     <div>
                       <p>{`Sorry, you've hit the limit rate `}</p>
@@ -197,7 +197,7 @@ function Body() {
                       Rest of the function is not affected.
                     </div>
                   </div>
-                )} */}
+                )}
                 {!loading && empty && <div>No match found</div>}
               </div>
             )}
