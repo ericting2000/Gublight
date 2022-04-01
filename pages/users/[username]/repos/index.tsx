@@ -64,7 +64,7 @@ export default function RepoList(props: Props) {
       <div>
         <Header />
       </div>
-      <div className="container flex flex-col justify-center items-center mt-20 mx-auto px-10 pb-20">
+      <div className={styles.cntanr}>
         {!error && (
           <div className="flex flex-col justify-center items-start w-full">
             <div className="text-center text-2xl text-white">{user}</div>
@@ -76,11 +76,7 @@ export default function RepoList(props: Props) {
             //console.log(repo);
             if (repos.length === index + 1) {
               return (
-                <div
-                  ref={lastRepo}
-                  key={repo.name}
-                  className="bg-[#020202] border border-[#8C949E] flex flex-col justify-start items-start text-[#8C949E] px-3 py-3 rounded-[8px] my-[6px] mx-[3px]"
-                >
+                <div ref={lastRepo} key={repo.name} className={styles.repo}>
                   <Link
                     href={{
                       pathname: '/users/[username]/repos/[reponame]',
@@ -92,7 +88,7 @@ export default function RepoList(props: Props) {
                     </a>
                   </Link>
                   <p className={styles.repodes}>{repo.description}</p>
-                  <div className="flex flex-row justify-between items-center mt-3 w-full justify-self-end">
+                  <div className={styles.repoinfo}>
                     <p className="text-sm">{repo.language}</p>
                     <div className="flex flex-row justify-center items-center  ">
                       <Image src={Star} alt="star" width={14} height={13} />
@@ -103,10 +99,7 @@ export default function RepoList(props: Props) {
               );
             } else {
               return (
-                <div
-                  key={repo.name}
-                  className="bg-[#020202] border border-[#8C949E] flex flex-col justify-start items-start text-[#8C949E] px-3 py-3 rounded-[8px] my-[6px] mx-[3px]"
-                >
+                <div key={repo.name} className={styles.repo}>
                   <Link
                     href={{
                       pathname: '/users/[username]/repos/[reponame]',
@@ -118,7 +111,7 @@ export default function RepoList(props: Props) {
                     </a>
                   </Link>
                   <p className={styles.repodes}>{repo.description}</p>
-                  <div className="flex flex-row justify-between items-center mt-3 w-full justify-self-end">
+                  <div className={styles.repoinfo}>
                     <p className="text-sm">{repo.language}</p>
                     <div className="flex flex-row justify-center items-center ">
                       <Image src={Star} alt="star" width={14} height={13} />
@@ -132,7 +125,7 @@ export default function RepoList(props: Props) {
         </div>
 
         {loading && (
-          <div className="py-2.5 px-5  mt-2 mr-2 text-sm font-medium  focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 bg-gray-800 text-gray-400 border border-[#8C949E] hover:text-white hover:bg-gray-700 inline-flex items-center rounded-md">
+          <div className={styles.loading}>
             <svg
               role="status"
               className="inline mr-2 w-4 h-4 text-gray-200 animate-spin "

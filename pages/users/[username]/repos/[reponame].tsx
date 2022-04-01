@@ -10,7 +10,7 @@ import Watch from '../../../../public/icon/Watch.svg';
 import Link from 'next/link';
 import Head from 'next/head';
 import Favicon from '../../../../utils/Favicon';
-
+import styles from '../../../../styles/[reponame].module.sass';
 interface Props {
   detail: RepoDetail;
   languages: Object;
@@ -55,7 +55,7 @@ export default function Repo(props: Props) {
       <div>
         <Header />
       </div>
-      <div className="container flex flex-col justify-center items-center mt-20 mx-auto px-10 pb-20 ">
+      <div className={styles.cntanr}>
         <div className="flex flex-col justify-center items-start w-full">
           <div className="text-center text-2xl text-white">
             <Link
@@ -74,20 +74,20 @@ export default function Repo(props: Props) {
           <div className="border-b border-[#C4C4C4] mt-2 w-full" />
         </div>
         <div className="flex justify-center items-center w-[90%]">
-          <div className="grid grid-cols-1 md:grid-cols-2 mt-10 py-10 px-10 bg-[#020202] border border-[#8C949E] rounded-lg text-white w-full">
-            <div className="my-4 mx-3 flex flex-col justify-start items-start">
-              <p className="text-xl font-medium text-[#58A7FF]">Last Update</p>
+          <div className={styles.repodetail}>
+            <div className={styles.detailitem}>
+              <p className={styles.itemtitle}>Last Update</p>
               <p className="my-3 text-[#c4c4c4]">
                 {detail.updated_at.slice(0, 10)}
               </p>
             </div>
-            <div className="my-4 mx-3 flex flex-col justify-start items-start">
-              <p className="text-xl font-medium text-[#58A7FF]">About</p>
+            <div className={styles.detailitem}>
+              <p className={styles.itemtitle}>About</p>
               <p className="my-3 text-[#c4c4c4]">{detail.description}</p>
             </div>
-            <div className="my-4 mx-3 flex flex-col justify-start items-start">
-              <p className="text-xl font-medium text-[#58A7FF]">Stats</p>
-              <div className="flex flex-row flex-wrap justify-start items-center my-3 text-[#c4c4c4]">
+            <div className={styles.detailitem}>
+              <p className={styles.itemtitle}>Stats</p>
+              <div className={styles.detailstats}>
                 <div className="flex flex-row justify-center items-center mr-3">
                   <Image src={Star} alt="star" width={14} height={13} />
                   <p className="pl-1">{detail.stargazers_count} stars</p>
@@ -102,16 +102,16 @@ export default function Repo(props: Props) {
                 </div>
               </div>
             </div>
-            <div className="my-4 mx-3 flex flex-col justify-start items-start">
-              <p className="text-xl font-medium text-[#58A7FF]">License</p>
+            <div className={styles.detailitem}>
+              <p className={styles.itemtitle}>License</p>
               <p className="my-3 text-[#c4c4c4]">
                 {detail.license === null
                   ? 'No license information'
                   : detail.license.name}
               </p>
             </div>
-            <div className="my-4 mx-3 flex flex-col justify-start items-start">
-              <p className="text-xl font-medium text-[#58A7FF]">Languages</p>
+            <div className={styles.detailitem}>
+              <p className={styles.itemtitle}>Languages</p>
               <div className="w-[95%] relative my-3">
                 {lans.map((lan, index) => {
                   console.log(lans.length);
@@ -143,7 +143,7 @@ export default function Repo(props: Props) {
                 })}
               </div>
 
-              <div className="flex flex-row flex-wrap justify-start items-center my-3 text-[#c4c4c4]">
+              <div className={styles.detailstats}>
                 {lans.map((lan) => {
                   let newLan = lan[0].replace(' ', '-');
                   newLan = newLan.replace('#', '-Sharp');
@@ -165,8 +165,8 @@ export default function Repo(props: Props) {
                 })}
               </div>
             </div>
-            <div className="my-4 mx-3 flex flex-col justify-start items-start">
-              <p className="text-xl font-medium text-[#58A7FF]">Contributors</p>
+            <div className={styles.detailitem}>
+              <p className={styles.itemtitle}>Contributors</p>
               <div className="flex flex-row flex-wrap justify-start items-center my-3 ">
                 {cntrbtrs !== null
                   ? cntrbtrs.map((contributor: Contributors) => {

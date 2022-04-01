@@ -37,23 +37,23 @@ function Body() {
   };
 
   return (
-    <div className={`${styles.body}`}>
+    <div className={styles.body}>
       <div className="!z-10 absolute">
         <div
-          className={`${styles.eclipse1}`}
+          className={styles.eclipse1}
           style={{ boxShadow: '0px 0px 33px 62px rgba(181, 237, 250, 0.3' }}
         />
         <div
-          className={`${styles.eclipse2}`}
+          className={styles.eclipse2}
           style={{ boxShadow: '0px 0px 33px 62px rgba(241, 129, 48, 0.3' }}
         />
         <div
-          className={`${styles.eclipse3}`}
+          className={styles.eclipse3}
           style={{ boxShadow: '0px 0px 33px 62px rgba(198, 58, 192, 0.3' }}
         />
       </div>
-      <div className={`${styles.glassphormism}`} />
-      <div className={`${styles.cntanr}`}>
+      <div className={styles.glassphormism} />
+      <div className={styles.cntanr}>
         <Head>
           <title>GubLight: Explore the software fantasy</title>
           <meta
@@ -63,19 +63,17 @@ function Body() {
           <Favicon />
         </Head>
 
-        <div className={`${styles.main}`}>
+        <div className={styles.main}>
           <div className="flex flex-col justify-center items-start">
-            <div className={`${styles.maincopy}`}>
+            <div className={styles.maincopy}>
               <p>Explore the </p>
               <p className="sm:leading-relaxed">software fantasy</p>
-              <p className={`${styles.maincopyp3}`}>
-                Find the next masterpiece
-              </p>
+              <p className={styles.maincopyp3}>Find the next masterpiece</p>
             </div>
-            <div className={`${styles.mainsearch}`}>
+            <div className={styles.mainsearch}>
               <input
                 type="text"
-                className={`${styles.mainsearchinput}`}
+                className={styles.mainsearchinput}
                 autoFocus
                 placeholder="Username"
                 onChange={(e) => {
@@ -85,7 +83,7 @@ function Body() {
                 onKeyDown={onKeyDown}
               />
               <button
-                className={`${styles.mainsearchbutton}`}
+                className={styles.mainsearchbutton}
                 onClick={() => {
                   setUsername(username);
                   //console.log(username);
@@ -96,7 +94,7 @@ function Body() {
               </button>
             </div>
             {isInput && (
-              <div className={`${styles.fuzzy}`}>
+              <div className={styles.fuzzy}>
                 {loading && (
                   <div className="text-center">
                     <div className="mx-auto my-0">

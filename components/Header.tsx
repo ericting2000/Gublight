@@ -66,8 +66,8 @@ export default function Header() {
 
   return (
     <div>
-      <div className="web-header bg-[#161B22] w-full h-20 ">
-        <div className="container flex justify-between items-center my-0 mx-auto  h-20 px-10 ">
+      <div className={styles.header}>
+        <div className={styles.cntanr}>
           <div className="flex justify-center items-center">
             <div>
               <Link href="/">
@@ -80,7 +80,7 @@ export default function Header() {
               <div className="flex  justify-center items-center text-xl rounded-md  w-full">
                 <input
                   type="text"
-                  className="text-[#393939] rounded-md my-5 w-[60%] md:w-[70%]  py-0.5 px-2 mr-3 "
+                  className={styles.input}
                   autoFocus
                   placeholder="Username"
                   onChange={(e) => {
@@ -91,7 +91,7 @@ export default function Header() {
                 />
                 <div className="absolute top-[54px] left-1 w-[60%] md:w-[70%]">
                   {isInput && (
-                    <div className="grid grid-cols-1 bg-white  text-[#040D21] w-full  mt-0.5 px-2 py-1 rounded-md ">
+                    <div className={styles.fuzzy}>
                       {loading && (
                         <div className="text-center">
                           <div className="mx-auto my-0">
@@ -199,7 +199,7 @@ export default function Header() {
                   )}
                 </div>
                 <button
-                  className="bg-[#161B22] hover:bg-[#5B5B5B] active:bg-[#3b3b3b] border border-[#c4c4c4] transition duration-300 rounded-md px-2 py-0.5 text-[#c4c4c4] "
+                  className={styles.button}
                   onClick={() => {
                     setUsername(username);
                     //console.log(username);
@@ -235,7 +235,7 @@ export default function Header() {
       <Collapse
         isOpen={isOpened}
         transition={`height 300ms cubic-bezier(.4, 0, .2, 1)`}
-        className="bg-[#2F3134] border-none flex flex-col justify-center items-center"
+        className={styles.collapse}
       >
         <div className="flex flex-row justify-center items-center text-xl rounded-md mt-5 w-full">
           <input
@@ -250,7 +250,7 @@ export default function Header() {
           />
 
           <button
-            className="bg-[#2F3134 ] hover:bg-[#5B5B5B] active:bg-[#3b3b3b] border border-[#c4c4c4] transition duration-300 rounded-md px-2 py-1 text-[#c4c4c4] "
+            className={styles.collapsebutton}
             onClick={async () => {
               setUsername(username);
               //console.log(username);
@@ -263,7 +263,7 @@ export default function Header() {
         </div>
         <div className="w-[85%] mb-5 ">
           {isInput && (
-            <div className="grid grid-cols-1 bg-white  text-[#040D21] w-full  mt-0.5 px-2 py-1 rounded-md ">
+            <div className={styles.fuzzy}>
               {loading && (
                 <div className="text-center">
                   <div className="mx-auto my-0">
