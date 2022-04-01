@@ -145,24 +145,24 @@ export default function RepoList(props: Props) {
             Loading...
           </div>
         )}
-        <div className="text-xl md:text-3xl text-white">
+        <div className={styles.statediv}>
           {empty && (
-            <div className="flex flex-col justify-center items-center leading-relaxed">
+            <div className={styles.state}>
               <p>{user} has no repository been created yet.</p>
             </div>
           )}
         </div>
-        <div className="text-xl md:text-3xl text-white">
+        <div className={styles.statediv}>
           {error && (
-            <div className="flex flex-col justify-center items-center leading-relaxed">
+            <div className={styles.state}>
               <p>{`Sorry, we cannot find what you're looking for.`}</p>
               <p>Please try again</p>
             </div>
           )}
         </div>
-        <div className="text-xl md:text-3xl text-white">
+        <div className={styles.statediv}>
           {limit && (
-            <div className="flex flex-col justify-center items-center leading-relaxed">
+            <div className={styles.state}>
               <p>{`Sorry, you've have reach the rate limit.`}</p>
               <p>Please try again later.</p>
               <p>
