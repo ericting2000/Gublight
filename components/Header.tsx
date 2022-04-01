@@ -179,7 +179,7 @@ export default function Header() {
                         <div>
                           <div>
                             <p>{`Sorry, you've hit the limit rate `}</p>
-                            <p>Please try the Fuuzy Search again later.</p>
+                            <p>Please try the Fuzzy Search again later.</p>
                             <p>
                               For more information, visit{' '}
                               <span className="hover:underline text-[#58A7FF]">
@@ -351,7 +351,7 @@ export default function Header() {
                 <div>
                   <div>
                     <p>{`Sorry, you've hit the limit rate `}</p>
-                    <p>Please try the Fuuzy Search again later.</p>
+                    <p>Please try the Fuzzy Search again later.</p>
                     <p>
                       For more information, visit{' '}
                       <span className="hover:underline text-[#58A7FF]">
