@@ -56,7 +56,7 @@
 
 ## About The Project
 
-![Imgur Image](https://imgur.com/a/3lIYjQ8)
+![Imgur Image](https://imgur.com/a/3lIYjQ8.jpg)
 
 A [**React**](https://reactjs.org) app paid homage to [**Github**](https://github.com) in design that could：
 
