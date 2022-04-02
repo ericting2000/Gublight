@@ -11,6 +11,7 @@ import Link from 'next/link';
 import Head from 'next/head';
 import Favicon from '../../../../utils/Favicon';
 import styles from '../../../../styles/[reponame].module.sass';
+
 interface Props {
   detail: RepoDetail;
   languages: Object;
@@ -216,7 +217,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const res2 = await fetch(
     `https://api.github.com/repos/${username}/${reponame}/languages`
   );
-  const data2 = await res2.json();
+  const lan = await res2.json();
 
   const res3 = await fetch(
     `https://api.github.com/repos/${username}/${reponame}/contributors`
@@ -226,13 +227,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   } else {
     var Data3: Array<Contributors> = await res3.json();
   }
-  const data3 = Data3;
+  const contributor = Data3;
 
   return {
     props: {
       detail: data as RepoDetail,
-      languages: data2 as Object,
-      contributors: data3 as Array<Contributors>,
+      languages: lan as Object,
+      contributors: contributor as Array<Contributors>,
     },
   };
 };
