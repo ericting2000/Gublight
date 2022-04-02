@@ -114,7 +114,7 @@ function Body() {
             name="description"
             content="Explore the software fantasy. Search the Github Repo as you desire, find the next masterpiece."
           />
-          <meta property="og:image" content="../public/Landing.png" />
+          <meta property="og:image" content="https://i.imgur.com/FCqD0uJ.png" />
           <Favicon />
         </Head>
 

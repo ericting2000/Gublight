@@ -1,11 +1,22 @@
+import Head from 'next/head';
 import Image from 'next/image';
 import Header from '../components/Header';
 import Gublight from '../public/icon/GubLight-Logo-NoBack.svg';
 import styles from '../styles/404.module.sass';
+import Favicon from '../utils/Favicon';
 
 export default function ErrorPage() {
   return (
     <div className="bg-[#030D22] min-h-screen">
+      <Head>
+        <title>GubLight: 404 Not Found</title>
+        <meta
+          name="description"
+          content="404 Not Found, Please contact the Gublight developer."
+        />
+        <meta property="og:image" content="https://i.imgur.com/GD38t2R.png" />
+        <Favicon />
+      </Head>
       <div>
         <Header />
       </div>

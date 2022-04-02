@@ -136,7 +136,7 @@ export default function RepoList(props: Props) {
           name="description"
           content={`${user}'s Github repository list. GubLight helps you to explore users and repos on Github.`}
         />
-        <meta property="og:image" content="../public/Landing.png" />
+        <meta property="og:image" content="https://i.imgur.com/FCqD0uJ.png" />
         <Favicon />
       </Head>
       <div>

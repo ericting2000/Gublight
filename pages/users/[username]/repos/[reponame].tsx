@@ -51,7 +51,7 @@ export default function Repo(props: Props) {
           name="description"
           content={`${reponame} is a public repository created by ${detail.owner.login} on Github.`}
         />
-        <meta property="og:image" content="../public/Landing.png" />
+        <meta property="og:image" content="https://i.imgur.com/FCqD0uJ.png" />
         <Favicon />
       </Head>
       <div>
