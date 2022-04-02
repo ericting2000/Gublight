@@ -44,13 +44,14 @@ export default function Repo(props: Props) {
   //console.log(totalByte);
 
   return (
-    <div className="bg-[#030D22] min-h-screen">
+    <div className="bg-[#030D22] ">
       <Head>
-        <title>{reponame}</title>
+        <title>{detail.full_name}</title>
         <meta
           name="description"
-          content={`Information about the ${reponame}`}
+          content={`${reponame} is a public repository created by ${detail.owner.login} on Github.`}
         />
+        <meta property="og:image" content="../public/Landing.png" />
         <Favicon />
       </Head>
       <div>

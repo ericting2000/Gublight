@@ -111,6 +111,7 @@ export default function RepoList(props: Props) {
         observer.current.disconnect();
       }
       observer.current = new IntersectionObserver((entries) => {
+        console.log('Fetch API!!');
         if (entries[0].isIntersecting && hasMore) {
           setPage((prevPage: number) => {
             //console.log('Previous pageNumber:' + prevPage);
@@ -128,13 +129,14 @@ export default function RepoList(props: Props) {
   );
 
   return (
-    <div className="bg-[#030D22] min-h-screen">
+    <div className="bg-[#030D22] ">
       <Head>
-        <title>{user}</title>
+        <title>{`${user}'s Github Repository List`}</title>
         <meta
           name="description"
-          content={`${user}'s Github repository list.`}
+          content={`${user}'s Github repository list. GubLight helps you to explore users and repos on Github.`}
         />
+        <meta property="og:image" content="../public/Landing.png" />
         <Favicon />
       </Head>
       <div>
