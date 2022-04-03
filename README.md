@@ -17,7 +17,7 @@
 
 <h1 align="center">Gublight</h1>
   <p align="center">
-  <h3>Explore the software fantasy.</h3>
+  <h3> 📱 Gublight = 🌏 Github + 🔍 Spotlight </h3>
     <a href="https://gublight.com">View Demo</a>
     ·
     <a href="https://github.com/ericting2000/Gublight/issues">Report Bug</a>
@@ -34,6 +34,7 @@
       <a href="#about-the-project">About The Project</a>
       <ul>
         <li><a href="#built-with">Built With</a></li>
+        <li><a href="#using">Using</a></li>
       </ul>
     </li>
     <li>
@@ -44,26 +45,28 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#architecture-design-&-explanation">Architecture Design & Explanation</a></li>
+    <li><a href="#a-little-more-detail">A Little More Detail</a></li>
     <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
+    
   </ol>
 </details>
 
+<br/>
+<br/>
+
 <!-- ABOUT THE PROJECT -->
 
-## About The Project
+## 📌 About The Project
 
 ![Imgur](https://i.imgur.com/Xf81Hvo.png)
 
-A [**React**](https://reactjs.org) app paid homage to [**Github**](https://github.com) in design that could：
+Gublight is a [**React**](https://reactjs.org) app paid homage to [**Github**](https://github.com) in design that could：
 
 - browse users/organizations on [**GitHub**](https://github.com)
 - list user's repositories with `Infinite Scroll` from [**GitHub REST API**](https://docs.github.com/en/rest)
 - get repository's detail from [**GitHub REST API**](https://docs.github.com/en/rest)
-- searching user with `Fuzzy Search` function.
+- searching user with `Fuzzy Search` feature.
 
 This is the homework of 2022 Dcard Web Frontend Intership Application.
 
@@ -86,16 +89,12 @@ Visit [here](https://drive.google.com/file/d/1niPucGwf9qGEpLokVptK2a1zNeReS8WL/v
 
 <!-- GETTING STARTED -->
 
-## Getting Started
+## 📌 Getting Started
 
-> This is how you setting up your project locally. To get a local copy up and running follow these simple example steps.
+> This is how you set up your project locally. To preview online, please visit [here](https://www.gublight.com).
 
 ### Prerequisites
 
-- npm
-  ```sh
-  npm install npm@latest -g
-  ```
 - yarn
   ```sh
   npm install yarn -g
@@ -109,10 +108,6 @@ Visit [here](https://drive.google.com/file/d/1niPucGwf9qGEpLokVptK2a1zNeReS8WL/v
    ```
 2. Install NPM or Yarn packages
 
-- npm
-  ```sh
-  npm install
-  ```
 - yarn
   ```sh
   yarn install
@@ -120,10 +115,6 @@ Visit [here](https://drive.google.com/file/d/1niPucGwf9qGEpLokVptK2a1zNeReS8WL/v
 
 3. Start the development server
 
-- npm
-  ```sh
-  npm run dev
-  ```
 - yarn
   ```sh
   yarn dev
@@ -135,71 +126,242 @@ Visit [here](https://drive.google.com/file/d/1niPucGwf9qGEpLokVptK2a1zNeReS8WL/v
 
 <!-- USAGE EXAMPLES -->
 
-<!-- ## Usage
+## 📌 Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+- Insert the Github user you would like to look for. Options that match your request may show up under the input box.
+  ![Imgur](https://i.imgur.com/4YzUtgB.gif)
+- Click 'Explore' or options showed below to navigate to the designated user page. You're welcomed to use the 'Enter' key to submit.
+  ![Imgur](https://i.imgur.com/rXc7kei.gif)
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+- In the user's page, all public repository will be listed. Click whichever repo you would like to explore for more information about it.
+  ![Imgur](https://i.imgur.com/UVjaIFi.gif)
+- Fill free to re-search for any user at anytime as you wish !
 
-<p align="right">(<a href="#top">back to top</a>)</p> -->
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-<!-- ROADMAP -->
+<!-- Architecture Design & Explanation -->
 
-<!-- ## Roadmap
+## 📌 Architecture Design & Explanation
 
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-  - [ ] Nested Feature
+### Routing Architecture Diagram
 
-See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
+```bash
+pages
+  ├── _app.tsx
+  ├── index.tsx	# Landing Page
+  ├── 400.tsx # Custom 404 page
+  ├── 500.tsx # Custom 500 page
+  └── users
+        └── [username]
+                ├── repos
+                │     └── [reponame].tsx # detailed information of specific repository
+                └── index.tsx	# List of repositories
+```
 
-<p align="right">(<a href="#top">back to top</a>)</p> -->
+- Dynamic Routing
+  - `/users/{username}/repos` for specific user's repo list.
+  - `/users/{username}/repos/{repo}` for specific repo info of some user.
+- Custom Error Page (404 Not Found, 500 Internal Server Error)
+  - Showed when the route is not exist or encounter internal error.
 
-<!-- CONTRIBUTING -->
+### Pages
 
-<!-- ## Contributing
+#### Landing Page
 
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+![Imgur](https://i.imgur.com/eH80TPu.png)
 
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
+- `Fuzzy Search`
+  - Feature is accessible across all app.
+  - With Custom Hook _useFuzzySearch()_, users will be able to implement fuzzy search using the input data they gave to generate suggestions.
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+#### Repository List
 
-<p align="right">(<a href="#top">back to top</a>)</p> -->
+![Imgur](https://i.imgur.com/6ilY5lf.png)
 
-<!-- LICENSE -->
+- `Infinite Scroll`
+  - Infinite Scroll(Lazy Loading) is essential to this kind of "Large Data requested" app, as it optimizes the performance of both API call procedure and render process.
+  - With Infinite Scroll, app only sends a request when the content(data) is about to use. Also, less things for initial render improve the performance and decrease the waiting time which provides a better user experience.
+- `How I Implement` ?
+  - _useCallback_ + _useRef()_ + _IntersectionObserver API_ + _useFetchRepoList_ custom hook.
+- `Core Concept`
 
-<!-- ## License
+  - When ever the last repository is showed on the screen, we send anthoer request to the API.
+  - Below is the example code.
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+    ```ts
+    const { limit, empty, loading, repos, error, hasMore } = useFetchRepo(
+      user,
+      page
+    ); // Fetch or not depends on the value of state "user" or "page"
+    const observer = useRef<IntersectionObserver | null>(null);
+    const lastRepo = useCallback(
+      (node) => {
+        if (loading) {
+          return; // If is in loading state, return. If it didn't return, fetch function will constantly being triggered due to the observer detection.
+        }
+        if (observer.current) {
+          observer.current.disconnect(); // Disconnect the current observer if is existed.(Which is connected to the previous round's last repo, or "Null" in the first round)
+        }
+        observer.current = new IntersectionObserver((entries) => {
+          if (entries[0].isIntersecting && hasMore) {
+            setPage((prevPage: number) => {
+              return prevPage + 1; // Entries[0] will be the last repo in current round, which is the one we want to observe. If it exists and it's on the screen, renew the page and triggered fetch function.
+            });
+          }
+        });
+        if (node) {
+          observer.current.observe(node); // Reconnect observer to the current round's last repo.
+        }
+      },
+      [loading, hasMore]
+    );
+    ```
 
-<p align="right">(<a href="#top">back to top</a>)</p> -->
+    ```tsx
+    {
+      repos.map((repo: RepoData, index: number) => {
+        if (repos.length === index + 1) {
+          return (
+            // We only want to observe the last repo in every round. Please notice the "ref" property.
+            <div ref={lastRepo} key={repo.name}>
+              # Code of render repo.
+            </div>
+          );
+        } else {
+          return (
+            <div key={repo.name} className={styles.repo}>
+              # Code of render repo.
+            </div>
+          );
+        }
+      });
+    }
+    ```
 
-<!-- CONTACT -->
+  - For demo, i log a message each time when the fetch funtion is triggerd.
+    ![Imgur](https://i.imgur.com/cTK1KHO.gif)
 
-<!-- ## Contact
+#### Repository Information
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
+![Imgur](https://i.imgur.com/WOPzbek.png)
 
-Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
+- Shows the information of the designated repository.
 
-<p align="right">(<a href="#top">back to top</a>)</p> -->
+### Components
 
-<!-- ACKNOWLEDGMENTS -->
+#### Header
 
-<!-- ## Acknowledgments
+![Imgur](https://i.imgur.com/HpO0VtB.png)
 
-- []()
-- []()
-- []()
+- `Header.tsx`
+  - Used all across the app (except for the landing page only), `Header.tsx` includes the _Search Box_ for users to explore Github.
+  - While displayed in mobile mode, the _Search Box_ will folded into the header. (It is still accessible at anytime by clicking the magnifier icon.)
 
-<p align="right">(<a href="#top">back to top</a>)</p> -->
+![Imgur](https://i.imgur.com/tBZHrVF.png)
+
+- `LandingHeader.tsx`
+  - Used only for landing page. No _Search Box_ included.
+
+#### Footer
+
+![Imgur](https://i.imgur.com/Gc6iO8K.png)
+
+- `Footer.tsx`
+  - Giving a Link for navigation to [Gublight's](https;//www.gublight.com) Github repository.
+
+### Custom Hooks
+
+- `useFetchRepoList.ts`
+  - Used for fetching all public repositories that the user has.
+  - cooperate with the **_IntersectionObserver_** WebAPI to decide whether to fetch for new data or not.
+- `useFuzzySearch.ts`
+  - Used for `Fuzzy Search` feature.
+
+<!-- A Liitle More Detail -->
+
+### States Within The Code
+
+- Error Handling
+  - _limit_ for rate limit indication.
+  - _error_ for fetching error indication.
+  - _empty_ for empty users/repo list/repo info indication.
+- Loading
+  - _loading_ for fetching execution.
+
+### Other Stuffs
+
+- Custom Error Page
+  - `404.tsx` for _404 Not Found_
+  - `500.tsx` for _500 Internal Server Error_
+
+## 📌 A Little More Detail
+
+### Rate Limit
+
+- Github restricts API request to prevent DDoS attack and cyberterrorism. For unauthenticated requests, the rate limit allows for up to 60 requests per hour. Since Gublight is a public repository, we're not allowed to submit personal access token for authentication to increse the limit rate.
+- When you encountered such circumstances, some of the functions may thus be temporarily restricted.
+
+### Responsive Web Design
+
+- With responsive design, Gublight is perfect to use in any of the devices.
+
+ <figure class="third">
+  <img src="https://i.imgur.com/FCqD0uJ.png" style="width:200px"><img src="https://imgur.com/zs2Q0Fm.jpg "style="width:200px"><img src="https://imgur.com/JYfbz6z.gif"style="width:200px">
+</figure>
+
+- Toggle the search input by clicking the magnifier icon!
+
+  <img src="https://imgur.com/ScEtZkU.gif" style="width:200px">
+
+### Fuzzy Search Debounce
+
+- When executing `Fuzzy Search`, **Debounce** is necessary to prevent performance issues. Most of the time, chances are the user already have a clue of their search goal. As a result, calling API immediately as soon as the user insert something is not efficent and a wise solution. Also, **Debounce** largely decrease the probability of hitting the <a href="#rate-limit">Rate Limit</a> metioned earlier.
+
+  ```ts
+  // In useFuzzySearch()
+
+  const timeout = useRef<NodeJS.Timeout | null>(null);
+
+    useEffect(() => {
+      setLoading(true);
+
+      function getUserList(queryString: string) {
+        clearTimeout(timeout.current as NodeJS.Timeout);
+
+        timeout.current = setTimeout(async () => {
+          // Fetching data code
+        }, 600);
+      }
+  ```
+
+### SEO
+
+- SEO(Search Engine Optimization) makes [Gublight](https;//www.gublight.com) being found from anywhere at anytime on anydevice all around the world more easily !
+
+  ```ts
+  <Head>
+    <title>GubLight: Explore the software fantasy</title>
+    <meta
+      name="description"
+      content="Explore the software fantasy. Search the Github Repo as you desire, find the next masterpiece."
+    />
+    <meta property="og:image" content="https://i.imgur.com/Xf81Hvo.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://gublight.com" />
+    <Favicon />
+  </Head>
+  ```
+
+  > Adding `<Head>` seciton to include meta tags and information of Gublight.
+
+  <!-- LICENSE-->
+
+## 📌 License
+
+Gublight is distributed under the MIT License. See `LICENSE` for more information.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
@@ -213,5 +375,5 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 [issues-shield]: https://img.shields.io/github/issues/ericting2000/Gublight.svg?style=for-the-badge
 [issues-url]: https://github.com/ericting2000/Gublight/issues
 [license-shield]: https://img.shields.io/github/license/ericting2000/Gublight.svg?style=for-the-badge
-[license-url]: https://github.com/ericting2000/Gublight/blob/master/LICENSE.txt
+[license-url]: https://github.com/ericting2000/Gublight/blob/master/LICENSE
 [product-screenshot]: images/screenshot.png
