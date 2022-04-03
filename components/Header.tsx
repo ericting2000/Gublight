@@ -191,7 +191,6 @@ export default function Header() {
 
   const onKeyDown = (e: KeyboardEvent<HTMLButtonElement>): void => {
     if (e.keyCode === 13) {
-      //console.log('ENTER!!!');
       handleRouteChange('/users/' + username + '/repos');
     }
   };
@@ -217,7 +216,6 @@ export default function Header() {
                   placeholder="Username"
                   onChange={(e) => {
                     setUsername(e.target.value);
-                    ///console.log(username);
                   }}
                   onKeyDown={onKeyDown}
                 />
@@ -234,7 +232,6 @@ export default function Header() {
                   className={styles.button}
                   onClick={() => {
                     setUsername(username);
-                    //console.log(username);
                     handleRouteChange('/users/' + username + '/repos');
                   }}
                 >
@@ -285,7 +282,6 @@ export default function Header() {
             className={styles.collapsebutton}
             onClick={async () => {
               setUsername(username);
-              //console.log(username);
 
               handleRouteChange('/users/' + username + '/repos');
             }}

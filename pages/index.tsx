@@ -85,7 +85,6 @@ function Body() {
 
   const onKeyDown = (e: KeyboardEvent<HTMLButtonElement>): void => {
     if (e.keyCode === 13) {
-      //console.log('ENTER!!!');
       handleRouteChange('/users/' + username + '/repos');
     }
   };
@@ -136,7 +135,6 @@ function Body() {
                 placeholder="Username"
                 onChange={(e) => {
                   setUsername(e.target.value);
-                  //console.log(username);
                 }}
                 onKeyDown={onKeyDown}
               />
@@ -144,7 +142,6 @@ function Body() {
                 className={styles.mainsearchbutton}
                 onClick={() => {
                   setUsername(username);
-                  //console.log(username);
                   handleRouteChange('/users/' + username + '/repos');
                 }}
               >

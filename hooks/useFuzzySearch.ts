@@ -48,7 +48,6 @@ export default function useFuzzySearch(username: string) {
           const users = data.items.map((user: FuzzyUser) => {
             return user;
           });
-          //console.log(data);
           if (users.length === 0) {
             setEmpty(true);
             return;
@@ -66,7 +65,6 @@ export default function useFuzzySearch(username: string) {
     }
 
     getUserList(queryString);
-    //console.log('TEST HOOK FUNCTION');
   }, [queryString]);
 
   return { loading, limit, empty, users };

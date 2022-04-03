@@ -114,7 +114,6 @@ export default function RepoList(props: Props) {
         console.log('Fetch API!!');
         if (entries[0].isIntersecting && hasMore) {
           setPage((prevPage: number) => {
-            //console.log('Previous pageNumber:' + prevPage);
             return prevPage + 1;
           });
         }
@@ -122,8 +121,6 @@ export default function RepoList(props: Props) {
       if (node) {
         observer.current.observe(node);
       }
-
-      //console.log('node = ' + node);
     },
     [loading, hasMore]
   );
@@ -154,7 +151,6 @@ export default function RepoList(props: Props) {
         )}
         <div className="grid grid-cols-1 md:grid-cols-2 mt-4 pb-10 w-full">
           {repos.map((repo: RepoData, index: number) => {
-            //console.log(repo);
             if (repos.length === index + 1) {
               return (
                 <div ref={lastRepo} key={repo.name} className={styles.repo}>
@@ -216,7 +212,6 @@ export default function RepoList(props: Props) {
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const params = context.params!;
   const username = params.username;
-  //console.log('in GSSR, username:' + username);
 
   return {
     props: {

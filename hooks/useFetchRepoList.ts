@@ -19,7 +19,6 @@ export default function useFetchRepo(username: string, page: number) {
     setError(false);
 
     async function getRepoList(username: string, page: number) {
-      //console.log('page in fetch function = ' + page);
       try {
         const res = await fetch(
           `https://api.github.com/users/${username}/repos?sort=updated&per_page=10&page=${page}`
@@ -31,7 +30,6 @@ export default function useFetchRepo(username: string, page: number) {
           return;
         }
         const data = await res.json();
-        //console.log(data);
         if (Object.values(data)[0] === 'Not Found') {
           setLoading(false);
           setError(true);
@@ -50,14 +48,12 @@ export default function useFetchRepo(username: string, page: number) {
         setFirstFetch(false);
         setHasMore(data.length > 0);
         setLoading(false);
-        //console.log(data);
       } catch (err) {
         console.log(err);
       }
     }
 
     getRepoList(username, page);
-    //console.log('TEST HOOK FUNCTION');
   }, [username, page]);
 
   return { limit, empty, loading, error, repos, hasMore };

@@ -24,7 +24,6 @@ export default function Repo(props: Props) {
 
   const detail = props.detail!;
   const cntrbtrs = props.contributors!;
-  //console.log(props.languages);
   const lans = Object.entries(props.languages!);
   let percntnew: number = 0;
 
@@ -40,8 +39,6 @@ export default function Repo(props: Props) {
       Math.pow(10, precision || 0)
     );
   };
-
-  //console.log(totalByte);
 
   return (
     <div className="bg-[#030D22] ">
@@ -119,7 +116,6 @@ export default function Repo(props: Props) {
               <p className={styles.itemtitle}>Languages</p>
               <div className="w-[95%] relative my-3">
                 {lans.map((lan, index) => {
-                  console.log(lans.length);
                   let newLan = lan[0].replace(' ', '-');
                   newLan = newLan.replace('#', '-Sharp');
                   newLan = newLan.replace('++', 'pp');
@@ -127,11 +123,7 @@ export default function Repo(props: Props) {
                   let percnt = roundDecimal((lan[1] / totalByte) * 100, 3);
                   let rounded: string = 'rounded-tl-full rounded-bl-full';
                   percntnew += percnt;
-                  // if (index === 0) {
-                  //   percntnew = percnt;
-                  // } else {
-                  //   percnt += percnt;
-                  // }
+
                   if (index === lans.length - 1) {
                     rounded = 'rounded-full';
                   }
@@ -209,14 +201,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const reponame = params.reponame;
   const username = params.username;
 
-  //console.log('username =' + username);
-  //console.log('reponame = ' + reponame);
-
   const res = await fetch(
     `https://api.github.com/repos/${username}/${reponame}`
   );
   const data = await res.json();
-  //console.log(data);
 
   const res2 = await fetch(
     `https://api.github.com/repos/${username}/${reponame}/languages`
