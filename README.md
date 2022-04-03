@@ -53,7 +53,6 @@
 </details>
 
 <br/>
-<br/>
 
 <!-- ABOUT THE PROJECT -->
 
@@ -106,7 +105,7 @@ Visit [here](https://drive.google.com/file/d/1niPucGwf9qGEpLokVptK2a1zNeReS8WL/v
    ```sh
    git clone https://github.com/ericting2000/Gublight.git
    ```
-2. Install NPM or Yarn packages
+2. Install Yarn packages
 
 - yarn
   ```sh
