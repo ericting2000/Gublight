@@ -303,13 +303,12 @@ pages
 
 - With responsive design, Gublight is perfect to use in any of the devices.
 
- <figure class="third">
-  <img src="https://i.imgur.com/zs2Q0Fm.png" style="width:200px"><iframe class="imgur-embed" width="200px" height="1920" frameborder="0" src="https://i.imgur.com/JYfbz6z.gifv#embed"></iframe>
-</figure>
+   <figure class="third">
+    ![Imgur](https://i.imgur.com/zs2Q0Fm.png)![Imgur](https://i.imgur.com/JYfbz6z.gifv)
+  </figure>
 
 - Toggle the search input by clicking the magnifier icon!
-
-  <a href="https://imgur.com/ScEtZkU"><img src="https://i.imgur.com/ScEtZkU.gif" title="source: imgur.com" style="200px"/></a>
+  ![Imgur](https://i.imgur.com/ScEtZkU.gifv)
 
 ### Fuzzy Search Debounce
 
