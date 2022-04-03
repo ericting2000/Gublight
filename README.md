@@ -6,7 +6,6 @@
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
 
-<!-- [![LinkedIn][linkedin-shield]][linkedin-url] -->
 
 <!-- PROJECT LOGO -->
 <br />
@@ -128,12 +127,12 @@ Visit [here](https://drive.google.com/file/d/1niPucGwf9qGEpLokVptK2a1zNeReS8WL/v
 ## 📌 Usage
 
 - Insert the Github user you would like to look for. Options that match your request may show up under the input box.
-  ![Imgur](https://i.imgur.com/4YzUtgB.gif)
+  ![Imgur](https://i.imgur.com/4YzUtgB.gifv)
 - Click 'Explore' or options showed below to navigate to the designated user page. You're welcomed to use the 'Enter' key to submit.
-  ![Imgur](https://i.imgur.com/rXc7kei.gif)
+  ![Imgur](https://i.imgur.com/rXc7kei.gifv)
 
 - In the user's page, all public repository will be listed. Click whichever repo you would like to explore for more information about it.
-  ![Imgur](https://i.imgur.com/UVjaIFi.gif)
+  ![Imgur](https://i.imgur.com/UVjaIFi.gifv)
 - Fill free to re-search for any user at anytime as you wish !
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -305,12 +304,12 @@ pages
 - With responsive design, Gublight is perfect to use in any of the devices.
 
  <figure class="third">
-  <img src="https://i.imgur.com/FCqD0uJ.png" style="width:200px"><img src="https://imgur.com/zs2Q0Fm.jpg "style="width:200px"><img src="https://imgur.com/JYfbz6z.gif"style="width:200px">
+  <img src="https://i.imgur.com/zs2Q0Fm.png" style="width:200px"><iframe class="imgur-embed" width="200px" height="1920" frameborder="0" src="https://i.imgur.com/JYfbz6z.gifv#embed"></iframe>
 </figure>
 
 - Toggle the search input by clicking the magnifier icon!
 
-  <img src="https://imgur.com/ScEtZkU.gif" style="width:200px">
+  <a href="https://imgur.com/ScEtZkU"><img src="https://i.imgur.com/ScEtZkU.gif" title="source: imgur.com" style="200px"/></a>
 
 ### Fuzzy Search Debounce
 
