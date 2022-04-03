@@ -52,6 +52,9 @@ export default function Repo(props: Props) {
           content={`${reponame} is a public repository created by ${detail.owner.login} on Github.`}
         />
         <meta property="og:image" content="https://i.imgur.com/Xf81Hvo.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://gublight.com" />
         <Favicon />
       </Head>
       <div>

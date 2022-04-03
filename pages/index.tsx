@@ -115,6 +115,9 @@ function Body() {
             content="Explore the software fantasy. Search the Github Repo as you desire, find the next masterpiece."
           />
           <meta property="og:image" content="https://i.imgur.com/Xf81Hvo.png" />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta property="og:type" content="website" />
+          <meta property="og:url" content="https://gublight.com" />
           <Favicon />
         </Head>
 

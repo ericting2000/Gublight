@@ -137,6 +137,9 @@ export default function RepoList(props: Props) {
           content={`${user}'s Github repository list. GubLight helps you to explore users and repos on Github.`}
         />
         <meta property="og:image" content="https://i.imgur.com/Xf81Hvo.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://gublight.com" />
         <Favicon />
       </Head>
       <div>
