@@ -299,12 +299,11 @@ pages
 
 - With responsive design, Gublight is perfect to use in any of the devices.
   <figure class="third">
-    <img src="https://i.imgur.com/smKi9uL.png" style="width:200px"><img src="https://imgur.com/4hi813z.jpg "style="width:200px"><img src="https://imgur.com/ZzigK5I.gif"style="width:200px">
+    <img src="https://i.imgur.com/smKi9uL.png" style="width:200px"><img src="https://imgur.com/4hi813z.jpg "style="width:200px">
   </figure>
   
 
 - Toggle the search input by clicking the magnifier icon!
-  ![Imgur](https://i.imgur.com/d2Vt3LV.gif)
 ### Fuzzy Search Debounce
 
 - When executing `Fuzzy Search`, **Debounce** is necessary to prevent performance issues. Most of the time, chances are the user already have a clue of their search goal. As a result, calling API immediately as soon as the user insert something is not efficent and a wise solution. Also, **Debounce** largely decrease the probability of hitting the <a href="#rate-limit">Rate Limit</a> metioned earlier.
