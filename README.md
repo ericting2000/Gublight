@@ -304,7 +304,10 @@ pages
   
 
 - Toggle the search input by clicking the magnifier icon!
-  <img src="https://i.imgur.com/6yoqjns.png" style="width:200px"/>
+  <figure class="third">
+    <img src="https://i.imgur.com/6yoqjns.png" style="width:200px"/>
+  </figure>
+  
 ### Fuzzy Search Debounce
 
 - When executing `Fuzzy Search`, **Debounce** is necessary to prevent performance issues. Most of the time, chances are the user already have a clue of their search goal. As a result, calling API immediately as soon as the user insert something is not efficent and a wise solution. Also, **Debounce** largely decrease the probability of hitting the <a href="#rate-limit">Rate Limit</a> metioned earlier.
