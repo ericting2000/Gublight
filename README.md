@@ -66,10 +66,6 @@ Gublight is a [**React**](https://reactjs.org) app paid homage to [**Github**](h
 - get repository's detail from [**GitHub REST API**](https://docs.github.com/en/rest)
 - searching user with `Fuzzy Search` feature.
 
-This is the homework of 2022 Dcard Web Frontend Intership Application.
-
-Visit [here](https://drive.google.com/file/d/1niPucGwf9qGEpLokVptK2a1zNeReS8WL/view) for more information about the homework requirement.
-
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Built With
